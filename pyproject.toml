@@ -3,7 +3,7 @@ requires = ["setuptools>=68.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "agent-office"
+name = "agent-office-cli"
 version = "0.1.0"
 description = "Human-centered multi-department office workflow, request management, and conversation adapter framework for AI agents"
 readme = "README.md"

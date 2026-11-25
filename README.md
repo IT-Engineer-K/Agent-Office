@@ -1,6 +1,6 @@
-# Agent Office (`agent-office`)
+# Agent Office (`agent-office-cli`)
 
-人間を中心に据えつつ、部署ごとの AI エージェント（マネージャー役・部下役）が並列に協調し、要望受付・質問すり合わせ・委譲・完了報告を行うためのオフィス基盤 CLI 兼 Python ライブラリです。
+人間を中心に据えつつ、部署ごとの AI エージェント（マネージャー役・部下役）が並列に協調し、要望受付・質問すり合わせ・委譲・完了報告を行うためのオフィス基盤 CLI（`agent-office`）兼 Python ライブラリ（`agent_office`）です。
 
 ## 設計の特徴
 
@@ -15,7 +15,7 @@
 ## 導入
 
 ```powershell
-pip install agent-office
+pip install agent-office-cli
 ```
 
 ローカルで開発する場合はリポジトリ直下で以下を実行してください。
