@@ -1,4 +1,4 @@
-"""Agent Desk — Human-centered request desk and conversation workflow library."""
+"""Agent Office — Human-centered multi-department workflow and conversation adapter library."""
 
 from .adapters import (
     ConversationAdapter,
@@ -7,7 +7,7 @@ from .adapters import (
 )
 from .errors import (
     AdapterError,
-    AgentDeskError,
+    AgentOfficeError,
     ChannelNotAllowedError,
     ConflictError,
     ExitCode,
@@ -33,14 +33,14 @@ from .models import (
     RequestStatus,
     WaitBatch,
 )
-from .service import DeskService
+from .service import AgentOfficeService
 from .store import SQLiteStore, default_db_path
 
 __version__ = "0.1.0"
 
 __all__ = [
     "__version__",
-    "DeskService",
+    "AgentOfficeService",
     "SQLiteStore",
     "default_db_path",
     "ConversationAdapter",
@@ -63,7 +63,7 @@ __all__ = [
     "RepliesResult",
     "ReplyResult",
     "ExitCode",
-    "AgentDeskError",
+    "AgentOfficeError",
     "InvalidArgumentsError",
     "NotFoundError",
     "ConflictError",

@@ -1,4 +1,4 @@
-"""SQLite persistence store for Agent Desk."""
+"""SQLite persistence store for Agent Office."""
 
 from __future__ import annotations
 
@@ -23,7 +23,7 @@ from .models import (
     RequestStatus,
 )
 
-DEFAULT_DB_ENV = "AGENT_DESK_DB"
+DEFAULT_DB_ENV = "AGENT_OFFICE_DB"
 _UNSET: Any = object()
 
 
@@ -37,8 +37,8 @@ def default_db_path() -> Path:
         return Path(env_path)
     appdata = os.environ.get("APPDATA")
     if appdata:
-        return Path(appdata) / "agent-desk" / "agent_desk.db"
-    return Path.home() / ".config" / "agent-desk" / "agent_desk.db"
+        return Path(appdata) / "agent-office" / "agent_office.db"
+    return Path.home() / ".config" / "agent-office" / "agent_office.db"
 
 
 _SCHEMA_SQL = """

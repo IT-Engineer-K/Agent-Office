@@ -1,4 +1,4 @@
-"""End-to-end workflow tests for Agent Desk using InMemoryConversationAdapter."""
+"""End-to-end workflow tests for Agent Office using InMemoryConversationAdapter."""
 
 from __future__ import annotations
 
@@ -6,21 +6,21 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from agent_desk import (
-    DeskService,
+from agent_office import (
+    AgentOfficeService,
     InMemoryConversationAdapter,
     SQLiteStore,
 )
 
 
-class TestAgentDeskWorkflow(unittest.TestCase):
+class TestAgentOfficeWorkflow(unittest.TestCase):
     def test_inbox_pull_is_idempotent_and_tracks_cursor(self) -> None:
         adapter = InMemoryConversationAdapter()
         adapter.inject_message("ch-dev", "ログイン画面のバグを直してほしい", author_id="u-owner", author_name="Owner")
         adapter.inject_message("ch-dev", "Bot からの通知", author_id="u-bot", author_name="Bot", author_bot=True)
 
         with SQLiteStore(":memory:") as store:
-            svc = DeskService(store, adapter)
+            svc = AgentOfficeService(store, adapter)
             svc.add_desk("dev", "ch-dev", name="開発部")
             svc.add_actor("owner", "human", display_name="オーナー", external_user_id="u-owner")
 
@@ -50,7 +50,7 @@ class TestAgentDeskWorkflow(unittest.TestCase):
 
             # Process 1: pull -> ask -> receive first answer
             with SQLiteStore(db_path) as store1:
-                svc1 = DeskService(store1, adapter)
+                svc1 = AgentOfficeService(store1, adapter)
                 svc1.add_desk("dev", "ch-dev", name="開発部")
                 svc1.add_actor("owner", "human", display_name="オーナー", external_user_id="u-owner")
                 svc1.add_actor("dev-mgr", "manager", display_name="開発マネージャー", desk_id="dev")
@@ -75,7 +75,7 @@ class TestAgentDeskWorkflow(unittest.TestCase):
 
             # Process 2 (simulated restart): reopen SQLite DB and continue from persisted cursor
             with SQLiteStore(db_path) as store2:
-                svc2 = DeskService(store2, adapter)
+                svc2 = AgentOfficeService(store2, adapter)
                 # No new messages yet -> timeout returns timed_out=True without losing cursor
                 timed_out = svc2.wait_for_answer(req_id, timeout=0.0, poll_interval=0.1)
                 self.assertTrue(timed_out.timed_out)
@@ -103,7 +103,7 @@ class TestAgentDeskWorkflow(unittest.TestCase):
     def test_parent_child_delegation_and_human_waiting_status(self) -> None:
         adapter = InMemoryConversationAdapter()
         with SQLiteStore(":memory:") as store:
-            svc = DeskService(store, adapter)
+            svc = AgentOfficeService(store, adapter)
             svc.add_desk("dev", "ch-dev", name="開発部")
             svc.add_actor("owner", "human", display_name="オーナー", external_user_id="u-owner")
             svc.add_actor("dev-mgr", "manager", display_name="開発マネージャー", desk_id="dev")

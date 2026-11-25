@@ -1,4 +1,4 @@
-"""Core domain models and adapter DTOs for Agent Desk."""
+"""Core domain models and adapter DTOs for Agent Office."""
 
 from __future__ import annotations
 

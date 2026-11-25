@@ -8,9 +8,9 @@ from typing import Any
 
 from discord_msg import DiscordClient, HttpResponse
 
-from agent_desk import (
+from agent_office import (
+    AgentOfficeService,
     ChannelNotAllowedError,
-    DeskService,
     DiscordConversationAdapter,
     SQLiteStore,
 )
@@ -135,7 +135,7 @@ class TestDiscordConversationAdapter(unittest.TestCase):
         adapter = DiscordConversationAdapter(client=client, enforce_allowlist=True)
 
         with SQLiteStore(":memory:") as store:
-            svc = DeskService(store, adapter)
+            svc = AgentOfficeService(store, adapter)
             svc.add_desk("dev", ch_id, name="開発部")
             svc.add_actor("dev-mgr", "manager", display_name="開発マネージャー", desk_id="dev")
 

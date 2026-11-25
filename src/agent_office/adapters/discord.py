@@ -99,7 +99,7 @@ class DiscordConversationAdapter:
             raise InvalidArgumentsError("channel_id must not be empty.")
         if self._enforce_allowlist and cleaned not in self._allowed_channels:
             raise ChannelNotAllowedError(
-                f"Channel '{cleaned}' is not in the Agent Desk allowlist."
+                f"Channel '{cleaned}' is not in the Agent Office allowlist."
             )
         return cleaned
 
@@ -113,7 +113,7 @@ class DiscordConversationAdapter:
             and cleaned not in self._allowed_channels
         ):
             raise ChannelNotAllowedError(
-                f"Thread '{cleaned}' is not in the Agent Desk allowlist."
+                f"Thread '{cleaned}' is not in the Agent Office allowlist."
             )
         return cleaned
 

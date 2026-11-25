@@ -33,8 +33,8 @@ def _default_thread_name(req: Request) -> str:
     return raw[:90]
 
 
-class DeskService:
-    """High-level Agent Desk operations built on SQLiteStore + ConversationAdapter."""
+class AgentOfficeService:
+    """High-level Agent Office operations built on SQLiteStore + ConversationAdapter."""
 
     def __init__(self, store: SQLiteStore, adapter: ConversationAdapter) -> None:
         self.store = store

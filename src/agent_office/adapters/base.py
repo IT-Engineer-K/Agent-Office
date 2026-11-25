@@ -1,4 +1,4 @@
-"""Abstract conversation adapter protocol for Agent Desk."""
+"""Abstract conversation adapter protocol for Agent Office."""
 
 from __future__ import annotations
 
@@ -8,7 +8,7 @@ from ..models import CreatedThread, MessageBatch, PostedMessage, WaitBatch
 
 
 class ConversationAdapter(Protocol):
-    """Platform-agnostic messaging interface used by DeskService."""
+    """Platform-agnostic messaging interface used by AgentOfficeService."""
 
     adapter_type: str
 

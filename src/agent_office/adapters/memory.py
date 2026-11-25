@@ -27,8 +27,8 @@ class InMemoryConversationAdapter:
     def __init__(
         self,
         *,
-        bot_author_id: str = "bot-agent-desk",
-        bot_author_name: str = "AgentDeskBot",
+        bot_author_id: str = "bot-agent-office",
+        bot_author_name: str = "AgentOfficeBot",
         allowed_channels: Collection[str] | None = None,
         allowed_threads: Collection[str] | None = None,
         enforce_allowlist: bool = False,

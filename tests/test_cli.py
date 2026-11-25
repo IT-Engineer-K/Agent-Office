@@ -1,4 +1,4 @@
-"""CLI tests for Agent Desk verifying JSON/table output and exit codes."""
+"""CLI tests for Agent Office verifying JSON/table output and exit codes."""
 
 from __future__ import annotations
 
@@ -8,11 +8,11 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from agent_desk import ExitCode, InMemoryConversationAdapter
-from agent_desk.cli import run_cli
+from agent_office import ExitCode, InMemoryConversationAdapter
+from agent_office.cli import run_cli
 
 
-class TestAgentDeskCLI(unittest.TestCase):
+class TestAgentOfficeCLI(unittest.TestCase):
     def _exec(
         self,
         argv: list[str],
@@ -36,7 +36,7 @@ class TestAgentDeskCLI(unittest.TestCase):
         adapter.inject_message("ch-ops", "サーバーの監視設定を確認してほしい", author_id="u-owner", author_name="Owner")
 
         with tempfile.TemporaryDirectory() as tmpdir:
-            db = str(Path(tmpdir) / "agent_desk.db")
+            db = str(Path(tmpdir) / "agent_office.db")
 
             # 1. Register desk & actors
             code, out, err = self._exec(
@@ -104,7 +104,7 @@ class TestAgentDeskCLI(unittest.TestCase):
     def test_cli_returns_not_found_for_missing_request(self) -> None:
         adapter = InMemoryConversationAdapter()
         with tempfile.TemporaryDirectory() as tmpdir:
-            db = str(Path(tmpdir) / "agent_desk.db")
+            db = str(Path(tmpdir) / "agent_office.db")
             code, out, err = self._exec(
                 ["req", "show", "REQ-9999", "--db", db],
                 adapter=adapter,

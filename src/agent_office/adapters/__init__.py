@@ -1,4 +1,4 @@
-"""Conversation adapter implementations for Agent Desk."""
+"""Conversation adapter implementations for Agent Office."""
 
 from .base import ConversationAdapter
 from .discord import DiscordConversationAdapter

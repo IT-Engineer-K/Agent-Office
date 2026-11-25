@@ -1,4 +1,4 @@
-"""Domain errors and exit codes for Agent Desk."""
+"""Domain errors and exit codes for Agent Office."""
 
 from __future__ import annotations
 
@@ -15,7 +15,7 @@ class ExitCode(IntEnum):
     STORAGE_ERROR = 7
 
 
-class AgentDeskError(Exception):
+class AgentOfficeError(Exception):
     """Base domain error with stable error code and CLI exit code."""
 
     code: str = "ERROR"
@@ -36,31 +36,31 @@ class AgentDeskError(Exception):
             self.exit_code = int(exit_code)
 
 
-class InvalidArgumentsError(AgentDeskError):
+class InvalidArgumentsError(AgentOfficeError):
     code = "INVALID_ARGS"
     exit_code = int(ExitCode.INVALID_ARGS)
 
 
-class NotFoundError(AgentDeskError):
+class NotFoundError(AgentOfficeError):
     code = "NOT_FOUND"
     exit_code = int(ExitCode.NOT_FOUND)
 
 
-class ConflictError(AgentDeskError):
+class ConflictError(AgentOfficeError):
     code = "CONFLICT"
     exit_code = int(ExitCode.CONFLICT)
 
 
-class ChannelNotAllowedError(AgentDeskError):
+class ChannelNotAllowedError(AgentOfficeError):
     code = "PERMISSION_DENIED"
     exit_code = int(ExitCode.PERMISSION_DENIED)
 
 
-class AdapterError(AgentDeskError):
+class AdapterError(AgentOfficeError):
     code = "ADAPTER_ERROR"
     exit_code = int(ExitCode.ADAPTER_ERROR)
 
 
-class StorageError(AgentDeskError):
+class StorageError(AgentOfficeError):
     code = "STORAGE_ERROR"
     exit_code = int(ExitCode.STORAGE_ERROR)

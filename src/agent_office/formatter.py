@@ -1,4 +1,4 @@
-"""Table and JSON output formatters for Agent Desk CLI."""
+"""Table and JSON output formatters for Agent Office CLI."""
 
 from __future__ import annotations
 

@@ -1,4 +1,4 @@
-"""Command-line entry point for Agent Desk."""
+"""Command-line entry point for Agent Office."""
 
 from __future__ import annotations
 
@@ -10,7 +10,7 @@ from typing import TextIO
 from . import __version__
 from .adapters.base import ConversationAdapter
 from .adapters.discord import DiscordConversationAdapter
-from .errors import AgentDeskError, ExitCode, InvalidArgumentsError
+from .errors import AgentOfficeError, ExitCode, InvalidArgumentsError
 from .formatter import (
     format_actor,
     format_actors,
@@ -25,7 +25,7 @@ from .formatter import (
     format_requests,
 )
 from .models import VALID_ACTOR_ROLES, VALID_REQUEST_STATUSES
-from .service import DeskService
+from .service import AgentOfficeService
 from .store import SQLiteStore
 
 
@@ -37,7 +37,7 @@ class _RaisingArgumentParser(argparse.ArgumentParser):
 def _add_output_options(parser: argparse.ArgumentParser) -> None:
     parser.add_argument(
         "--db",
-        help="Path to SQLite database file (defaults to AGENT_DESK_DB or OS app config path).",
+        help="Path to SQLite database file (defaults to AGENT_OFFICE_DB or OS app config path).",
     )
     parser.add_argument(
         "--format",
@@ -61,10 +61,10 @@ def _read_message_arg(positional: str | None, option: str | None, use_stdin: boo
 
 def build_parser() -> argparse.ArgumentParser:
     parser = _RaisingArgumentParser(
-        prog="agent-desk",
-        description="Human-centered request desk and conversation workflow CLI for AI agents.",
+        prog="agent-office",
+        description="Human-centered multi-department office workflow CLI for AI agents.",
     )
-    parser.add_argument("--version", action="version", version=f"agent-desk {__version__}")
+    parser.add_argument("--version", action="version", version=f"agent-office {__version__}")
 
     top = parser.add_subparsers(dest="group")
 
@@ -208,7 +208,7 @@ def run_cli(
         fmt = args.format
 
         with SQLiteStore(args.db) as store:
-            svc = DeskService(store, resolved_adapter)
+            svc = AgentOfficeService(store, resolved_adapter)
 
             if args.group == "desk":
                 if args.action == "add":
@@ -339,8 +339,8 @@ def run_cli(
                     return int(ExitCode.OK)
 
         raise InvalidArgumentsError("Unknown command.")
-    except AgentDeskError as exc:
-        print(f"[agent-desk] error ({exc.code}): {exc.message}", file=err_stream)
+    except AgentOfficeError as exc:
+        print(f"[agent-office] error ({exc.code}): {exc.message}", file=err_stream)
         return exc.exit_code
 
 
