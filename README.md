@@ -15,6 +15,12 @@
 ## 導入
 
 ```powershell
+pip install agent-office
+```
+
+ローカルで開発する場合はリポジトリ直下で以下を実行してください。
+
+```powershell
 pip install -e .
 ```
 

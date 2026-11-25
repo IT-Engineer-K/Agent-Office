@@ -9,9 +9,23 @@ description = "Human-centered multi-department office workflow, request manageme
 readme = "README.md"
 requires-python = ">=3.10"
 license = {text = "MIT"}
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
 dependencies = [
     "discord-message-cli>=0.3.0",
 ]
+
+[project.urls]
+Homepage = "https://github.com/IT-Engineer-K/Agent-Office"
+Repository = "https://github.com/IT-Engineer-K/Agent-Office"
+Issues = "https://github.com/IT-Engineer-K/Agent-Office/issues"
 
 [project.scripts]
 agent-office = "agent_office.cli:main"
